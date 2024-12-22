@@ -199,6 +199,6 @@ export default App;
 EOT
 
 # Completion message
-echo "Setup complete! Navigate to your project directory and start coding!"
-echo "Thanks for using our script! Support the developer of this project by giving a star on GitHub."
-
+echo -e "\e[32m🎉 Setup complete! All dependencies are installed, and the app is ready to go!\e[0m"
+echo -e "\e[34mRun \`$package_manager run dev\` to start your development server.\e[0m"
+echo -e "\e[36m🚀 Enjoy coding and happy building!\e[0m"
