@@ -160,4 +160,5 @@ else
   npx shadcn@latest add button
 fi
 
-echo "Setup complete! Navigate to your project directory and start coding 🚀"
+echo "Setup complete! Navigate to your project directory and start coding!"
+echo "Thanks for using our script!, support developer of this project by giving a star on github."
