@@ -30,6 +30,14 @@ else
   npx tailwindcss init -p
 fi
 
+echo "Installing @radix-ui/react-icons..."
+if [[ "$package_manager" == "bun" ]]; then
+  bun add @radix-ui/react-icons
+else
+  npm install @radix-ui/react-icons
+fi
+
+
 # tailwind config
 echo "Configuring Tailwind CSS..."
 cat <<EOT > tailwind.config.js
@@ -163,40 +171,53 @@ else
   npx shadcn@latest add button
 fi
 
+
 # promotion
 echo "Adding promotion message to App.tsx..."
 cat <<EOT > src/App.tsx
 import React from "react";
 
+import { Button } from "./components/ui/button";
+import { StarFilledIcon } from "@radix-ui/react-icons";
+import { ChevronRightIcon } from "@radix-ui/react-icons";
 const App = () => {
   return (
-    <div>
-      <div
-        style={{
-          backgroundColor: "#e0f7fa",
-          color: "#00796b",
-          padding: "20px",
-          margin: "20px 0",
-          borderRadius: "10px",
-          textAlign: "center",
-          fontSize: "16px",
-        }}
-      >
-        <p>
-          🎉 This script was writter by <strong>Zaid</strong>! 
-          Check out the code on my{" "}
-          <a href="https://github.com/zaid-commits" target="_blank" rel="noopener noreferrer">
-            GitHub
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Vite project generated using automation!</h1>
+      <p className="font-normal text-center mt-4 text-xl text-muted-foreground">If you really like the script, make sure to follow the developer and star the repo.</p>
+      <div className="flex mt-6 gap-10">
+       
+        <Button>
+          <a
+            href="https://github.com/zaid-commits/vite-shadcn-automation"
+            target="_blank"
+            className="flex items-center"
+          >
+            <StarFilledIcon className="mr-2 h-4 w-4 text-yellow-500" />
+            Star the repo
           </a>
-          . Don't forget to star the <a href="https://github.com/zaid-commits/vite-shadcn-automation">repo</a> and show your support! 🌟
-        </p>
+          <ChevronRightIcon className="mr-2 h-4 w-4" />
+        </Button>
+
+        <Button variant={"outline"}>
+          <a
+            href="https://github.com/zaid-commits/"
+            target="_blank"
+            className="flex items-center"
+          >
+            <StarFilledIcon className="mr-2 h-4 w-4 text-yellow-500" />
+            Follow Developer
+          </a>
+          <ChevronRightIcon className="mr-2 h-4 w-4" />
+        </Button>
       </div>
     </div>
   );
 };
 
 export default App;
-EOT
+
+  EOT
 
 # completion message
 echo -e "\e[32m🎉 Setup complete! All dependencies are installed, and the app is ready to go!\e[0m"
