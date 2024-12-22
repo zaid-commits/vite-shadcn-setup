@@ -1,9 +1,9 @@
-#!/bin/bash
 
-# Prompt for the project name
+
+# enter project name
 read -p "Enter the name of your project: " project_name
 
-# Prompt for package manager choice
+# select package manager
 read -p "Do you want to use Bun or NPM? (bun/npm): " package_manager
 
 if [[ "$package_manager" != "bun" && "$package_manager" != "npm" ]]; then
@@ -11,7 +11,7 @@ if [[ "$package_manager" != "bun" && "$package_manager" != "npm" ]]; then
   exit 1
 fi
 
-# Step 1: Create a new Vite project
+# new vite project
 echo "Creating a new Vite project..."
 if [[ "$package_manager" == "bun" ]]; then
   bun create vite@latest "$project_name" --template react-ts
@@ -20,7 +20,7 @@ else
 fi
 cd "$project_name" || exit
 
-# Step 2: Install Tailwind CSS and its peer dependencies
+# tailwind dependencies
 echo "Installing Tailwind CSS..."
 if [[ "$package_manager" == "bun" ]]; then
   bun add -D tailwindcss postcss autoprefixer
@@ -30,7 +30,7 @@ else
   npx tailwindcss init -p
 fi
 
-# Step 3: Update Tailwind configuration
+# tailwind config
 echo "Configuring Tailwind CSS..."
 cat <<EOT > tailwind.config.js
 /** @type {import('tailwindcss').Config} */
@@ -43,7 +43,7 @@ module.exports = {
 }
 EOT
 
-# Add Tailwind imports to the main CSS file
+# Tailwind imports and inter font
 echo "@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');" > src/index.css
 echo "@tailwind base;" >> src/index.css
 echo "@tailwind components;" >> src/index.css
@@ -59,7 +59,7 @@ else
   npm install -D tailwindcss-animate
 fi
 
-# Step 5: Update TypeScript configuration for tsconfig.json
+#tsconfig.json
 echo "Configuring tsconfig.json..."
 cat <<EOT > tsconfig.json
 {
@@ -81,7 +81,7 @@ cat <<EOT > tsconfig.json
 }
 EOT
 
-# Step 6: Update tsconfig.app.json
+#tsconfig.app.json
 echo "Configuring tsconfig.app.json..."
 cat <<EOT > tsconfig.app.json
 {
@@ -117,7 +117,7 @@ cat <<EOT > tsconfig.app.json
 }
 EOT
 
-# Step 7: Configure Vite with path alias
+# vite.config.ts
 echo "Configuring vite.config.ts..."
 if [[ "$package_manager" == "bun" ]]; then
   bun add -D @types/node
@@ -139,7 +139,7 @@ export default defineConfig({
 });
 EOT
 
-# Step 8: Initialize ShadCN
+#  ShadCN
 echo "Initializing ShadCN..."
 if [[ "$package_manager" == "bun" ]]; then
   bunx --bun shadcn@latest init <<EOD
@@ -155,7 +155,7 @@ no
 EOD
 fi
 
-# Step 9: Add default components (e.g., Button)
+# shadcn button
 echo "Adding ShadCN components..."
 if [[ "$package_manager" == "bun" ]]; then
   bunx --bun shadcn@latest add button
@@ -163,7 +163,7 @@ else
   npx shadcn@latest add button
 fi
 
-# Step 10: Add promotion message to App.tsx
+# promotion
 echo "Adding promotion message to App.tsx..."
 cat <<EOT > src/App.tsx
 import React from "react";
@@ -198,7 +198,7 @@ const App = () => {
 export default App;
 EOT
 
-# Completion message
+# completion message
 echo -e "\e[32m🎉 Setup complete! All dependencies are installed, and the app is ready to go!\e[0m"
 echo -e "\e[34mRun \`$package_manager run dev\` to start your development server.\e[0m"
 echo -e "\e[36m🚀 Enjoy coding and happy building!\e[0m"
