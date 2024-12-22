@@ -220,5 +220,17 @@ EOT
 
 # completion message
 echo -e "\e[32m🎉 Setup complete! All dependencies are installed, and the app is ready to go!\e[0m"
+
+read -p "Do you want to initialize a git repo in this project? (yes/no): " init_git
+
+if [[ "$init_git" == "yes" ]]; then
+  git init
+  git add .
+  git commit -m "Initial commit"
+  echo -e "\e[32mGit repository initialized and initial commit made.\e[0m"
+else
+  echo -e "\e[33mSkipping git initialization.\e[0m"
+fi
+
 echo -e "\e[34mRun \`$package_manager run dev\` to start your development server.\e[0m"
 echo -e "\e[36m🚀 Enjoy coding and happy building!\e[0m"
