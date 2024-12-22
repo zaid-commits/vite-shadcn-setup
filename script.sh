@@ -44,9 +44,12 @@ module.exports = {
 EOT
 
 # Add Tailwind imports to the main CSS file
-echo "@tailwind base;" > src/index.css
+echo "@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');" > src/index.css
+echo "@tailwind base;" >> src/index.css
 echo "@tailwind components;" >> src/index.css
 echo "@tailwind utilities;" >> src/index.css
+echo "body { font-family: 'Inter'; }" >> src/index.css
+echo "body { font-weight: 500; }" >> src/index.css
 
 # Step 4: Install TailwindCSS plugins (tailwindcss-animate)
 echo "Installing TailwindCSS plugins (tailwindcss-animate)..."
@@ -160,5 +163,42 @@ else
   npx shadcn@latest add button
 fi
 
+# Step 10: Add promotion message to App.tsx
+echo "Adding promotion message to App.tsx..."
+cat <<EOT > src/App.tsx
+import React from "react";
+
+const App = () => {
+  return (
+    <div>
+      <div
+        style={{
+          backgroundColor: "#e0f7fa",
+          color: "#00796b",
+          padding: "20px",
+          margin: "20px 0",
+          borderRadius: "10px",
+          textAlign: "center",
+          fontSize: "16px",
+        }}
+      >
+        <p>
+          🎉 This script was writter by <strong>Zaid</strong>! 
+          Check out the code on my{" "}
+          <a href="https://github.com/zaid-commits" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+          . Don't forget to star the <a href="https://github.com/zaid-commits/vite-shadcn-automation">repo</a> and show your support! 🌟
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default App;
+EOT
+
+# Completion message
 echo "Setup complete! Navigate to your project directory and start coding!"
-echo "Thanks for using our script!, support developer of this project by giving a star on github."
+echo "Thanks for using our script! Support the developer of this project by giving a star on GitHub."
+
