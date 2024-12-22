@@ -171,14 +171,13 @@ else
   npx shadcn@latest add button
 fi
 
-
 # promotion
 echo "Adding promotion message to App.tsx..."
+mkdir -p src
 cat <<EOT > src/App.tsx
-import React from "react";
 
 import { Button } from "./components/ui/button";
-import { StarFilledIcon } from "@radix-ui/react-icons";
+import { GitHubLogoIcon, StarFilledIcon } from "@radix-ui/react-icons";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
 const App = () => {
   return (
@@ -205,7 +204,7 @@ const App = () => {
             target="_blank"
             className="flex items-center"
           >
-            <StarFilledIcon className="mr-2 h-4 w-4 text-yellow-500" />
+            <GitHubLogoIcon className="mr-2 h-4 w-4 text-black" />
             Follow Developer
           </a>
           <ChevronRightIcon className="mr-2 h-4 w-4" />
@@ -217,7 +216,7 @@ const App = () => {
 
 export default App;
 
-  EOT
+EOT
 
 # completion message
 echo -e "\e[32m🎉 Setup complete! All dependencies are installed, and the app is ready to go!\e[0m"
