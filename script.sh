@@ -1,3 +1,4 @@
+#!/bin/bash
 
 
 # enter project name
@@ -172,8 +173,22 @@ else
 fi
 
 # promotion
-echo "Adding promotion message to App.tsx..."
-mkdir -p src
+mkdir -p src/components/ui
+cat <<EOT > src/components/ui/button.tsx
+import React from 'react';
+
+export const Button = ({ children, variant = "default" }) => {
+  const baseStyle = "px-4 py-2 rounded";
+  const variantStyle = variant === "outline" ? "border border-gray-500" : "bg-blue-500 text-white";
+  return (
+    <button className={`${baseStyle} ${variantStyle}`}>
+      {children}
+    </button>
+  );
+};
+EOT
+
+cat <<EOT > src/App.tsx
 cat <<EOT > src/App.tsx
 
 import { Button } from "./components/ui/button";
