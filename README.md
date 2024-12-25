@@ -54,13 +54,17 @@ Here's a step-by-step example of how the tool works:
 
 2. Enter the name of your project when prompted.
 
-3. The tool will create a Vite project with all the necessary configurations, including:
+3. Select the package manager you want to use : (bun/npm)
+
+4. The tool will create a Vite project with all the necessary configurations, including:
 
     - React
     - TypeScript
     - Tailwind CSS
     - ShadCN UI
 
+5. After the prompt for initializing a new git repository select (yes/no)
+   
 ---
 
 ## Future Enhancements
