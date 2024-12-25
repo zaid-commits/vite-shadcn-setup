@@ -1,0 +1,15 @@
+{
+  "name": "vite-shadcn-automation",
+  "version": "0.0.1",
+  "description": "This script automates the setup of a new Vite project with React, TypeScript, Tailwind CSS, and ShadCN components. It supports both Bun and NPM as package managers.",
+  "main": "index.js",
+  "bin": {
+    "vite-setup": "./script.sh"
+  },
+  "scripts": {
+    "test": "./script.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
