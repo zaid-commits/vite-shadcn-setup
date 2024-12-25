@@ -1,54 +1,104 @@
-# Vite Project Automation Script
+# Vite ShadCN Setup
 
-This script automates the setup of a new Vite project with React, TypeScript, Tailwind CSS, and ShadCN components. It supports both Bun and NPM as package managers.
+**Automate Vite Project Setup with React, TypeScript, Tailwind CSS, ShadCN UI, and More**
+
+`vite-shadcn-setup` is a CLI tool designed to streamline the setup of a Vite project with essential configurations for modern frontend development. It integrates React, TypeScript, Tailwind CSS, ShadCN UI, and other popular tools to get your project up and running in no time.
+
+---
 
 ## Features
 
-- Creates a new Vite project with a
-- Installs and configures Tailwind CSS with necessary dependencies
-- Installs @radix-ui/react-icons
-- Configures Tailwind CSS with custom settings
-- Adds TailwindCSS plugins (tailwindcss-animate)
-- Configures TypeScript with `tsconfig.json` and `tsconfig.app.json`
-- Configures Vite with `vite.config.ts`
-- Initializes ShadCN and adds a button component
-- Adds a promotion message to `src/App.tsx`
-- Optionally initializes a Git repository
+- **Quick Setup**: Automates the creation of a Vite-based project with React, TypeScript, Tailwind CSS, and ShadCN UI.
+- **Customizable**: Easily extendable to include additional configurations or dependencies.
+- **One-Step Installation**: Simple CLI command to initialize your project.
+
+---
+
+## Installation
+
+To install `vite-shadcn-setup`, run the following command:
+
+```bash
+npm install -g vite-shadcn-setup
+```
+
+Alternatively, you can use `npx` to run it without installation:
+
+```bash
+npx vite-shadcn-setup
+```
+
+---
 
 ## Usage
 
-1. Clone the repository or download the script.
-2. Make the script executable:
-   ```sh
-   chmod +x script.sh
-3. Run the script with your preferred package manager:
-    ```sh
-    ./script.sh [bun|npm]
+Once installed, you can use the CLI tool to automate the setup of your Vite project. Simply run:
+
+```bash
+vite-setup
+```
+
+You will be prompted to enter the name of your project, and the tool will handle the rest.
+
+---
+
+## Example
+
+Here's a step-by-step example of how the tool works:
+
+1. Run the following command to start the setup process:
+
+    ```bash
+    npx vite-shadcn-setup
     ```
 
-## Requirements
+2. Enter the name of your project when prompted.
 
-- Node.js (if using NPM)
-- Bun (if using Bun)
-- Git (optional)
+3. The tool will create a Vite project with all the necessary configurations, including:
 
-## License
+    - React
+    - TypeScript
+    - Tailwind CSS
+    - ShadCN UI
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+---
+
+## Future Enhancements
+
+Currently, this tool supports Vite and ShadCN as libraries and frameworks, and bun and npm as package managers. In future releases, we plan to add support for:
+
+- Additional frameworks such as Next.js and Aceternity UI
+- More package managers like Yarn and pnpm
+- Enhanced configuration options for Tailwind CSS
+- Integration with popular state management libraries
+- Improved testing setups with Jest and React Testing Library
+
+Stay tuned for updates!
+
+---
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request.
+We welcome contributions to this project. If you'd like to contribute, please fork the repository, create a new branch, and submit a pull request. Contributions, bug reports, and feature requests are appreciated!
 
-## Acknowledgements
+---
 
-- [Vite](https://vitejs.dev/)
-- [React](https://reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [ShadCN](https://shadcn.dev/)
-- [Radix UI](https://www.radix-ui.com/)
+## License
 
-## Contact
+This project is licensed under the [MIT License](LICENSE.md).
 
-For any questions or feedback, please contact [engineering.zaidrakhange@gmail.com].
+---
+
+## Author
+
+- **Zaid Rakhange** - [GitHub Profile](https://github.com/zaid-commits)
+
+---
+
+### Acknowledgments
+
+- **Vite** - A fast, modern build tool.
+- **ShadCN UI** - A utility-first UI library.
+- **Tailwind CSS** - A utility-first CSS framework.
+
+---
