@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Check if bun or npm is installed
+if ! command -v bun &> /dev/null && ! command -v npm &> /dev/null; then
+  echo "Neither Bun nor NPM is installed. Please install one of them to proceed."
+  exit 1
+fi
 
 # enter project name
 read -p "Enter the name of your project: " project_name
@@ -38,6 +43,8 @@ else
   npm install @radix-ui/react-icons
 fi
 
+# Ensure src directory exists
+mkdir -p src
 
 # tailwind config
 echo "Configuring Tailwind CSS..."
@@ -175,20 +182,65 @@ fi
 # promotion
 mkdir -p src/components/ui
 cat <<EOT > src/components/ui/button.tsx
-import React from 'react';
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
 
-export const Button = ({ children, variant = "default" }) => {
-  const baseStyle = "px-4 py-2 rounded";
-  const variantStyle = variant === "outline" ? "border border-gray-500" : "bg-blue-500 text-white";
-  return (
-    <button className={`${baseStyle} ${variantStyle}`}>
-      {children}
-    </button>
-  );
-};
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-8",
+        icon: "h-9 w-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button"
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+Button.displayName = "Button"
+
+export { Button, buttonVariants }
 EOT
 
-cat <<EOT > src/App.tsx
 cat <<EOT > src/App.tsx
 
 import { Button } from "./components/ui/button";
@@ -198,7 +250,7 @@ const App = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Vite project generated using automation!</h1>
-      <p className="font-normal text-center mt-4 text-xl text-muted-foreground">If you really like the script, make sure to follow the developer and star the repo.</p>
+      <p className="font-normal text-center mt-4 text-xl text-muted-foreground">If you found this script helpful make sure to star the repo and follow the developer.</p>
       <div className="flex mt-6 gap-10">
        
         <Button>
